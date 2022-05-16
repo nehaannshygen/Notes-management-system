@@ -1,0 +1,96 @@
+{% load static %}
+
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    body {
+        background-color: rgb(44, 1, 75);
+      }
+      label  {
+        color: white;
+        padding: 20px 20px;
+        font-size:17px ;
+        margin: 5px 0;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+        display: inline-block; 
+        width: 200px;
+        text-align: left;
+      }
+      p {
+        color: white;
+      }
+      input[type=file]{
+        color: white;
+        width: 25%;
+        padding: 10px 20px;
+        margin: 8px 0;
+        outline: none;
+      }
+      input {
+        width: 25%;
+        padding: 10px 20px;
+        margin: 8px 0;
+        outline: none;
+      }
+      input:focus {
+        background-color: lightblue;
+      }
+      input[type=submit]{
+            background-color: darkcyan;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15 px;
+            cursor: pointer;
+      }
+      input[type=submit]:hover {
+        background-color:rgb(191, 240, 95) ; 
+        color: black;
+      }
+      
+    
+      
+   
+</style>
+<body>
+  <div class="logo">
+    <a href="{% static 'AssignmentStudent.html' %}"><img src="{% static 'images/logon.png' %}" width="220px" height="57px" alt="#" /></a>
+ </div>
+    <h1 style="color:white;">SUBMIT ASSIGNMENT</h1>
+    <form action="{% url 'assignment:AssignmentStudent' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table>
+        <label for="student_registration">Registration number:</label>
+        <input type="text" id="student_registration" name="student_registration"><br><br>
+        {% for item in assignments %}
+        <tr> 
+            <p style="padding-left:20px">{{ item.class_code }} <br> <br> <br>
+            {{ item.instructions }} <br>
+            <br>
+            <br>
+            
+            <a href="{{ item.upload.url }}" download >{{ item.upload }}</a></p>
+            <label for="class_code">class code:</label>
+            <input type="text" id="class_code" name="class_code"><br><br>
+            <label for="upload_answer">Upload:</label>
+            <input type="file" id="upload_answer" name="upload_answer"><br><br>
+
+        </tr>
+        {% endfor %}
+        <input type="submit" value="Submit"><br>
+    </table>
+
+      </form>
+</body>
+</html>

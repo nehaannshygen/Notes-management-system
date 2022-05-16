@@ -1,0 +1,85 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    body {
+        background-color: rgb(44, 1, 75);
+      }
+      label  {
+        color: white;
+        padding: 20px 20px;
+        font-size:20px ;
+        margin: 5px 0;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+        display: inline-block; 
+        width: 200px;
+        text-align: left;
+      }
+      input {
+        width: 25%;
+        padding: 10px 20px;
+        margin: 8px 0;
+        border: 1px solid #555;
+        outline: none;
+      }
+      input:focus {
+        background-color: lightblue;
+      }
+      input[type=submit]{
+            background-color: darkcyan;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+      }
+      input[type=submit]:hover {
+        background-color:rgb(191, 240, 95) ; 
+        color: black;
+      }
+      
+    
+      
+   
+</style>
+<body>
+  <div class="logo">
+    <img src="{% static 'images/logon.png' %}" width="220px" height="57px" alt="#" /></a>
+ </div>
+    <h1 style="color:white;">SIGN UP</h1>
+    <form action="{% url 'signup' %}" method="POST">
+      {% csrf_token %}
+
+        <label for="firstname">First name:</label>
+        <input type="text" id="firstname" name="firstname"><br><br>
+
+        <label for="lastname">Last name:</label>
+        <input type="text" id="lastname" name="lastname" ><br><br>
+      
+        <label for="registration">Registration number:</label>
+        <input type="text" id="registration" name="registration"><br><br>
+
+        <label for="yearofjoining">Year of Joining:</label>
+        <input type="text" id="yearofjoining" name="yearofjoining"><br><br>
+
+        <label for="pwd">Password:</label>
+        <input type="password" id="pwd" name="pwd"><br><br>
+
+        <!-- <label for="rpwd">Repeat Password:</label>
+        <input type="password" id="rpwd" name="rpwd"><br><br> -->
+
+        <input type="submit" value="Submit">
+      </form>
+</body>
+</html>

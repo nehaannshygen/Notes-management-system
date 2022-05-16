@@ -1,0 +1,102 @@
+{% load static %}
+
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    body {
+        background-color: rgb(44, 1, 75);
+      }
+      label  {
+        color: white;
+        padding: 20px 20px;
+        font-size:17px ;
+        margin: 5px 0;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+        display: inline-block; 
+        width: 200px;
+        text-align: left;
+      }
+      p {
+        color: white;
+      }
+      a {
+        color: white; 
+      }
+      table, th, td {
+        border: 1px solid white;
+        padding: 2px;
+      }
+      tr 
+      {
+          color: white;
+      }
+      input[type=file]{
+        color: white;
+        width: 25%;
+        padding: 10px 20px;
+        margin: 8px 0;
+        outline: none;
+      }
+      input {
+        width: 25%;
+        padding: 10px 20px;
+        margin: 8px 0;
+        outline: none;
+      }
+      input:focus {
+        background-color: lightblue;
+      }
+      input[type=submit]{
+            background-color: darkcyan;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15 px;
+            cursor: pointer;
+      }
+      input[type=submit]:hover {
+        background-color:rgb(191, 240, 95) ; 
+        color: black;
+      }
+      
+    
+      
+   
+</style>
+<body>
+  <div class="logo">
+    <img src="{% static 'images/logon.png' %}" width="220px" height="57px" alt="#" /></a>
+ </div>
+    <h1 style="color:white;">View assignments</h1>
+
+      {% csrf_token %}
+      <table style="width:100%">
+        <tr>
+            <th>Registrations</th>
+            <th>class code</th> 
+            <th>File</th>
+          </tr>
+        {% for item in assignments_answers %}
+        <tr> 
+            <td>{{ item.student_registration }}</td>
+            <td>{{ item.class_code }}</td>
+            <td><a href="{{ item.upload_answer.url }}" download >{{ item.upload_answer }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p><a href="{% url 'uploadpage' %}">Back</a></p>
+
+
+</body>
+</html>
